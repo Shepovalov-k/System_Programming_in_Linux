@@ -11,14 +11,21 @@ static void strrev(char* str) {
 }
 
 static void decimal2strbinary(char* buffer, unsigned int number) {
-  while (number != 0) {
-    int digit = number % 2;
-    number = number / 2;
-    *buffer = '0' + digit;
-    buffer++;
+  char* start = buffer;
+
+  if (number == 0) {
+    *buffer++ = '0';
+    *buffer = '\0';
+    return;
   }
-  *(buffer + 1) = '\n';
-  strrev(buffer);
+
+  while (number != 0) {
+    *buffer++ = '0' + (number & 1);
+    number >>= 1;
+  }
+  *buffer = '\0';
+
+  strrev(start);
 }
 
 int main() {
