@@ -40,11 +40,11 @@ int count_1_digits(int number) {
 }
 
 int main() {
-  unsigned int number;
+  int number;
   char binary_string_buffer[100];
 
   printf("Enter an integer number: ");
-  scanf("%u", &number);
+  scanf("%d", &number);
 
   decimal_to_binary_string(binary_string_buffer, number);
 
