@@ -1,41 +1,41 @@
 #include <stdio.h>
 #include <string.h>
 
-static void strrev(char* str) {
-  int len = strlen(str);
-  for (int i = 0; i < len / 2; i++) {
-    char temp = str[i];
-    str[i] = str[len - 1 - i];
-    str[len - 1 - i] = temp;
-  }
+static void reverse_string(char* str) {
+    int length = strlen(str);
+    for (int i = 0; i < length / 2; i++) {
+        char temp = str[i];
+        str[i] = str[length - 1 - i];
+        str[length - 1 - i] = temp;
+    }
 }
 
-static void decimal2strbinary(char* buffer, unsigned int number) {
-  char* start = buffer;
+static void decimal_to_binary_string(char* buffer, unsigned int number) {
+    char* buffer_start = buffer;
 
-  if (number == 0) {
-    *buffer++ = '0';
-    *buffer = '\0';
-    return;
-  }
+    if (number == 0) {
+        *buffer++ = '0';
+        *buffer = '\0';
+        return;
+    } else {
+        while (number != 0) {
+            *buffer++ = '0' + (number & 1);
+            number >>= 1;
+        }
+        *buffer = '\0';
 
-  while (number != 0) {
-    *buffer++ = '0' + (number & 1);
-    number >>= 1;
-  }
-  *buffer = '\0';
-
-  strrev(start);
+        reverse_string(buffer_start);
+    }
 }
 
 int main() {
-  unsigned int number;
-  char buffer[100];
+    unsigned int number;
+    char binary_string_buffer[100];
 
-  scanf("%u", &number);
+    scanf("%u", &number);
 
-  decimal2strbinary(buffer, number);
+    decimal_to_binary_string(binary_string_buffer, number);
 
-  printf("%s", buffer);
-  return 0;
+    printf("Двоичное представление числа: %s\n", binary_string_buffer);
+    return 0;
 }
