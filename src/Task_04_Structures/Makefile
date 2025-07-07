@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -pedantic -g
+CFLAGS := #-Wall -Wextra -Werror -pedantic -g
 LDFLAGS :=
 
 SRC := $(wildcard *.c)
@@ -10,6 +10,7 @@ BIN := $(OBJ:.o=)
 
 $(BIN): $(OBJ)
 	$(CC) $(LDFLAGS) $^ -o $@
+	rm -rf $(OBJ)
 
 $(OBJ): $(SRC)
 	$(CC) $(CFLAGS) -c $^ -o $@
